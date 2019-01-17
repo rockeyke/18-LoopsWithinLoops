@@ -151,13 +151,33 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
+    original_top_x = rectangle.corner_1.x
+    original_bot_x = rectangle.corner_2.x
+
+    bot_right = rectangle.corner_2
+    top_left = rectangle.corner_1
+    length = rectangle.corner_2.x - rectangle.corner_1.x
+    height = rectangle.corner_2.y - rectangle.corner_1.y
+
+    print(length, height)
+
     for k in range(n):
         for j in range(k+1):
-            new_rectangle = rg.Rectangle()
+            new_rectangle = rg.Rectangle(top_left, bot_right)
+            new_rectangle.attach_to(window)
+            window.render(0.1)
+            bot_right.x = bot_right.x - length
+            top_left.x = top_left.x - length
+
+        bot_right.x = original_bot_x
+        top_left.x = original_top_x
+
+        bot_right.y = bot_right.y + height
+        top_left.y = top_left.y + height
 
 
 # ----------------------------------------------------------------------
