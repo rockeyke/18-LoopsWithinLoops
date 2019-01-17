@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Kirsten Rockey.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -84,6 +84,36 @@ def draw_L(window, circle, r, c):
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+    fill_color = circle.fill_color
+
+    x = original_x
+    y = original_y
+    for k in range(r):
+        for j in range(3):
+            new_circle = rg.Circle(rg.Point(x,y), radius)
+            new_circle.fill_color = fill_color
+            new_circle.attach_to(window)
+            window.render(0.1)
+
+            x = x + (radius*2)
+        x = original_x
+        y = y + (radius*2)
+
+    for k in range(3):
+        for j in range(3+c):
+            new_circle = rg.Circle(rg.Point(x,y), radius)
+            new_circle.fill_color = fill_color
+            new_circle.attach_to(window)
+            window.render(0.1)
+
+            x = x + (radius*2)
+        x = original_x
+        y = y + (radius*2)
+
+
 
 def run_test_draw_wall_on_right():
     """ Tests the    draw_wall_on_right    function. """
@@ -124,6 +154,10 @@ def draw_wall_on_right(rectangle, n, window):
     # TODO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    for k in range(n):
+        for j in range(k+1):
+            new_rectangle = rg.Rectangle()
 
 
 # ----------------------------------------------------------------------
